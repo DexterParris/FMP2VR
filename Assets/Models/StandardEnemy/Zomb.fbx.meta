@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 5cd56735096979b489f1574f1ba59f67
+guid: 465021fe47fdb804483cf6f1bb447c14
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: -4391526211344092941
-    second: M4A1.016|M4A1|Leather_Armchair|BaseLayer
-  externalObjects: {}
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: flesh
+    second: {fileID: 2800000, guid: c90c3d4a2d3178142965c88ebde74eab, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -27,7 +29,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -95,13 +97,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -11,6 +12,13 @@ public class GunScript : XRGrabInteractable
     bool timerIsStarted = false;
     float timeleft;
 
+    //Bayonet related variables
+    public Animator _bladeAnim;
+    public GameObject _blade;
+    
+    public InputActionProperty _bladeExtensionButton;
+
+    bool _bladeState = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +29,30 @@ public class GunScript : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+        bool _bladeExtension = _bladeExtensionButton.action.WasPressedThisFrame();
+        if (_bladeExtension)
+        {
+            if (_bladeState)
+            {
+                _blade.SetActive(false);
+                _bladeAnim.SetBool("Extended", false);
+                _bladeState = false;
+            }
+            else if (_bladeState == false)
+            {
+                _blade.SetActive(true);
+                _bladeAnim.SetBool("Extended", true);
+                _bladeState = true;
+            }
+
+            
+        }
+
         //detect how long the trigger is being held
 
+
+
+        /*
         if (Input.GetKeyDown(KeyCode.G))
         {
             ChargeGun();
@@ -31,6 +61,7 @@ public class GunScript : XRGrabInteractable
         {
             ShootGun();
         }
+        */
         
 
         if (timerIsStarted)
@@ -81,5 +112,15 @@ public class GunScript : XRGrabInteractable
         Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, 10);
         Debug.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward, Color.red,1f);
 
+    }
+
+    /*void ExtendBlade(InputAction.CallbackContext context)
+    {
+
+    }*/
+
+    private IEnumerator DebounceInput(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 }
