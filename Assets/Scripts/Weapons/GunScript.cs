@@ -30,7 +30,7 @@ public class GunScript : XRGrabInteractable
     void Update()
     {
         bool _bladeExtension = _bladeExtensionButton.action.WasPressedThisFrame();
-        if (_bladeExtension)
+        if (_bladeExtension && isSelected)
         {
             if (_bladeState)
             {
