@@ -24,6 +24,14 @@ public class EnemyScript : MonoBehaviour
         
     }
 
+    void DoMove()
+    {
+        if (_isAlive)
+        {
+
+        }
+    }
+
     public void DoDamage(float _damage, Vector3 _hitPosition)
     {
         if(_health > _maxhealth)

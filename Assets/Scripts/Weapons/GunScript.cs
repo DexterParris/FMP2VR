@@ -51,7 +51,7 @@ public class GunScript : XRGrabInteractable
 
 
 
-        /*
+        
         if (Input.GetKeyDown(KeyCode.G))
         {
             ChargeGun();
@@ -60,7 +60,7 @@ public class GunScript : XRGrabInteractable
         {
             ShootGun();
         }
-        */
+        
         
 
         if (timerIsStarted)
@@ -110,24 +110,23 @@ public class GunScript : XRGrabInteractable
 
         RaycastHit _hit;
         Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out _hit);
+        Debug.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward *_hit.distance, Color.red, 1f);
 
         if (_hit.collider.isTrigger)
         {
-            if(_hit.collider.gameObject.tag == "Coin")
+            if(_hit.collider.gameObject.transform.parent.tag == "Coin")
             {
-                _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                CoinScript _coinScript = _hit.collider.transform.parent.GetComponent<CoinScript>();
+                _coinScript.Hasbeenhit(gameObject);
             }
-            else if(_hit.collider.gameObject.tag == "Enemy")
+            else if(_hit.collider.gameObject.transform.parent.tag == "Enemy")
             {
-
                 _hit.collider.gameObject.GetComponent<EnemyScript>().DoDamage(timeleft,_hit.point);
             }
         }
             
+
         
-
-
-        Debug.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward, Color.red,1f);
 
     }
 

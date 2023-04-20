@@ -37,8 +37,8 @@ public class Slicer : MonoBehaviour
 
     IEnumerator SliceDebounce()
     {
-        isTouched = false;
 
+        isTouched = false;
         Collider[] objectsToBeSliced = Physics.OverlapBox(transform.position, new Vector3(1, 0.1f, 0.1f), transform.rotation, sliceMask);
 
         foreach (Collider objectToBeSliced in objectsToBeSliced)
@@ -56,7 +56,8 @@ public class Slicer : MonoBehaviour
 
             Destroy(objectToBeSliced.gameObject);
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
+        
     }
 
 }

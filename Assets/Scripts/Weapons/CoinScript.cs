@@ -5,14 +5,37 @@ using UnityEngine.UIElements;
 
 public class CoinScript : MonoBehaviour
 {
+    string _prevTarget = null;
     public void Hasbeenhit(GameObject _hitType)
     {
-        string _ignoreTarget = null;
-        //check if the hit comes from another coin
-        if (_hitType.tag == "coin")
+
+
+        StartCoroutine(ReflectShot(_hitType));
+
+         
+    }
+
+    IEnumerator ReflectShot(GameObject _hitType)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        string _objectName = gameObject.name;
+
+
+
+        if (_hitType.name != "EnergyPistol")
         {
-            _ignoreTarget = _hitType.gameObject.name;
+            _prevTarget = _hitType.name;
+            Destroy(_hitType);
         }
+        else if (_hitType.name == "EnergyPistol")
+        {
+            _prevTarget = _hitType.name;
+        }
+
+        
+
+        float _oldDistance = 10000f;
 
 
         //check if there are any other coins in the vicinity
@@ -21,39 +44,50 @@ public class CoinScript : MonoBehaviour
         GameObject _closestTarget = null;
         foreach (GameObject _target in _possibleTargets)
         {
-            Vector3 _distance = _target.transform.position - transform.position;
-            float _curDistance = _distance.sqrMagnitude;
-            if(_curDistance < Mathf.Infinity)
+            print(_target.transform.parent.name);
+            if (_target.transform.parent.name != gameObject.name)
             {
-                if(_target.gameObject.name != _ignoreTarget)
+                if (_target.transform.parent.name != _prevTarget)
                 {
-                    _closestTarget = _target;
+                    Vector3 _diff = _target.transform.parent.position - transform.position;
+                    float _curDistance = _diff.sqrMagnitude;
+                    if (_curDistance < _oldDistance)
+                    {
+                        _closestTarget = _target;
+                        _oldDistance = _curDistance;
+
+                    }
                 }
-                
+
             }
+
         }
 
         //check if the next coin is the same as the previous. if it is then check for the next one, if it isn't then reflect the shot into another coin and if it cannot find another coin then shoot the nearest enemy's weakpoint,
         if (_closestTarget.transform.parent.gameObject.tag == "Coin")
         {
-            RaycastHit _hit;
-            Vector3 _direction = _closestTarget.transform.position - transform.position;
+            print(_closestTarget.transform.parent.name);
 
-            Physics.Raycast(transform.position, _direction,out _hit);
+            RaycastHit _hit;
+            Vector3 _direction = _closestTarget.transform.parent.position - transform.position;
+
+            Physics.Raycast(transform.position, _direction, out _hit);
             Debug.DrawRay(transform.position, _direction, Color.magenta, 1f);
-            
+
             if (_hit.collider.isTrigger)
             {
-                if (_hit.collider.gameObject.tag == "Coin")
+                if (_hit.collider.gameObject.transform.parent.tag == "Coin")
                 {
-                    _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                    _hit.collider.gameObject.transform.parent.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                    
+
                 }
             }
         }
         else if (_closestTarget.transform.parent.gameObject.tag == "Enemy")
         {
             RaycastHit _hit;
-            Vector3 _direction = _closestTarget.transform.position - transform.position;
+            Vector3 _direction = _closestTarget.transform.parent.position - transform.position;
 
             Physics.Raycast(transform.position, _direction, out _hit);
             Debug.DrawRay(transform.position, _direction, Color.magenta, 1f);
@@ -63,10 +97,11 @@ public class CoinScript : MonoBehaviour
                 if (_hit.collider.gameObject.tag == "WeakPoint")
                 {
                     _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                    
                 }
             }
         }
-
-         
+        
     }
+
 }
