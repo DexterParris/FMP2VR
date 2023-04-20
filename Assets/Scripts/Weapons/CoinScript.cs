@@ -5,18 +5,6 @@ using UnityEngine.UIElements;
 
 public class CoinScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Hasbeenhit(GameObject _hitType)
     {
         string _ignoreTarget = null;
@@ -45,16 +33,40 @@ public class CoinScript : MonoBehaviour
             }
         }
 
+        //check if the next coin is the same as the previous. if it is then check for the next one, if it isn't then reflect the shot into another coin and if it cannot find another coin then shoot the nearest enemy's weakpoint,
         if (_closestTarget.transform.parent.gameObject.tag == "Coin")
         {
-            Physics.Raycast(transform.position, transform.LookAt(_closestTarget), 10);
-            Debug.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward, Color.red, 1f);
+            RaycastHit _hit;
+            Vector3 _direction = _closestTarget.transform.position - transform.position;
+
+            Physics.Raycast(transform.position, _direction,out _hit);
+            Debug.DrawRay(transform.position, _direction, Color.magenta, 1f);
+            
+            if (_hit.collider.isTrigger)
+            {
+                if (_hit.collider.gameObject.tag == "Coin")
+                {
+                    _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                }
+            }
         }
         else if (_closestTarget.transform.parent.gameObject.tag == "Enemy")
         {
+            RaycastHit _hit;
+            Vector3 _direction = _closestTarget.transform.position - transform.position;
 
+            Physics.Raycast(transform.position, _direction, out _hit);
+            Debug.DrawRay(transform.position, _direction, Color.magenta, 1f);
+
+            if (_hit.collider.isTrigger)
+            {
+                if (_hit.collider.gameObject.tag == "WeakPoint")
+                {
+                    _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+                }
+            }
         }
 
-        //check if the next coin is the same as the previous. if it is then check for the next one, if it isn't then reflect the shot into another coin and if it cannot find another coin then shoot the nearest enemy's weakpoint, 
+         
     }
 }

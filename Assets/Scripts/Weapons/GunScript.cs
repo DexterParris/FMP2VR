@@ -45,7 +45,6 @@ public class GunScript : XRGrabInteractable
                 _bladeState = true;
             }
 
-            
         }
 
         //detect how long the trigger is being held
@@ -109,7 +108,25 @@ public class GunScript : XRGrabInteractable
         particle.SetActive(false);
 
 
-        Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, 10);
+        RaycastHit _hit;
+        Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out _hit);
+
+        if (_hit.collider.isTrigger)
+        {
+            if(_hit.collider.gameObject.tag == "Coin")
+            {
+                _hit.collider.gameObject.GetComponent<CoinScript>().Hasbeenhit(gameObject);
+            }
+            else if(_hit.collider.gameObject.tag == "Enemy")
+            {
+
+                _hit.collider.gameObject.GetComponent<EnemyScript>().DoDamage(timeleft,_hit.point);
+            }
+        }
+            
+        
+
+
         Debug.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward, Color.red,1f);
 
     }
