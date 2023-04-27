@@ -20,7 +20,7 @@ public class OffhandScript : MonoBehaviour
         if (_triggerValue >= 0.4f)
         {
             GameObject _coin = Instantiate(_coinPrefab, transform.position, transform.rotation);
-            _coin.GetComponent<>
+            _coin.GetComponent<Rigidbody>();
         }
     }
 

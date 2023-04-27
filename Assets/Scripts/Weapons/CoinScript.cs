@@ -17,7 +17,7 @@ public class CoinScript : MonoBehaviour
 
     IEnumerator ReflectShot(GameObject _hitType)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
         string _objectName = gameObject.name;
 
