@@ -6,7 +6,77 @@ ModelImporter:
   - first:
       74: -623603649343465320
     second: Scene
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AlienPlates
+    second: {fileID: 2100000, guid: 76716f4fefc5d924095e8f60962fbcc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AlienTV
+    second: {fileID: 2100000, guid: 7e94045812a5b824aada366f2533ff61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Earth
+    second: {fileID: 2100000, guid: c9f2aa243eaf8464092ee55253e99b86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 386f4f5a6536fbe46aff28841413dc78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 686fa109774344041a42af0e41e1bfa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 227432b080f5fb34c966889110401aef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 5b8408a0fa38c6a4fa3b2347ce88741e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 9f01d8e61b590ab419ded5de1f983839, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.013
+    second: {fileID: 2100000, guid: ef3ffda4d4c09f148b089a03cd54e80f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedDoor
+    second: {fileID: 2100000, guid: d6b90439f4aa1cd4eaee52a10b38d7b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UFOWARNING
+    second: {fileID: 2100000, guid: 1538b93b6931eb94baeff387c8cb4756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: YellowTape
+    second: {fileID: 2100000, guid: 69df8c08c129d1742ab7a2e1a1b029c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aliensign
+    second: {fileID: 2100000, guid: 18640e6fd22ced747bd1e6c41537972c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mars
+    second: {fileID: 2100000, guid: 166622f6eda8383469037d61db04f809, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
