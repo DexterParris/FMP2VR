@@ -7,12 +7,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GunScript : XRGrabInteractable
 {
+    [Header("Gun Gameobjects")]
     public GameObject shootingPoint;
     public GameObject particle;
     bool timerIsStarted = false;
     float timeleft;
 
-    //Bayonet related variables
+    [Header("Sound Gameobjects")]
+    public GameObject _suckingSound;
+    public AudioSource  _shootingSound;
+    public GameObject _chargingSound;
+    public AudioSource _chargedShootingSound;
+
+    [Header("Bayonet Gameobjects")]
     public Animator _bladeAnim;
     public GameObject _blade;
     
@@ -78,6 +85,8 @@ public class GunScript : XRGrabInteractable
 
     public void ChargeGun()
     {
+        _suckingSound.SetActive(true);
+        _chargingSound.SetActive(true);
         //called in unity when player starts holding the trigger
         print("charging");
         //start the timer here 
@@ -88,6 +97,9 @@ public class GunScript : XRGrabInteractable
 
     public void ShootGun()
     {
+        
+        _suckingSound.SetActive(false);
+        _chargingSound.SetActive(false);
         //called in unity when the player lets go of the trigger
 
         print("shooting");
@@ -99,6 +111,11 @@ public class GunScript : XRGrabInteractable
         if(timeleft <1.2f && timeleft > 1f)
         {
             timeleft = 1f;
+            _shootingSound.Play();
+        }
+        else
+        {
+            _chargedShootingSound.Play();
         }
 
         Debug.Log(timeleft);

@@ -1,49 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NavmeshAI : MonoBehaviour
 {
-    Animator anim;
+    public Transform[] _points;
 
-    Pathfinding pathfinder;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private BlendTree _animTree;
 
-    // Start is called before the first frame update
-    void Start()
+    private NavMeshAgent _nav;
+    private int _destPoint;
+
+    private void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
-        pathfinder = gameObject.GetComponentInParent<Pathfinding>();
+        _nav = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (MovementScript.Invincible == true)
-        {
-            anim.SetBool("Killable", true);
+        _anim.SetFloat("Speed", _nav.velocity.magnitude);
+        
+    }
 
-        }
-        else
+    private void FixedUpdate()
+    {
+        if(!_nav.pathPending && _nav.remainingDistance < 0.5f)
         {
-            anim.SetBool("Killable", false);
+            GoToNextPoint();
         }
+
 
     }
 
-    public void Die()
+    void GoToNextPoint()
     {
-        anim.SetBool("Dead", true);
-        pathfinder.destPoint = 1;
-        pathfinder.nav.speed = 10;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision != null && collision.gameObject.tag == "HomePoint")
+        if(_points.Length == 0)
         {
-            anim.SetBool("Killable", false);
-            anim.SetBool("Dead", false);
-            pathfinder.nav.speed = 5;
+            return;
         }
+        _nav.destination = _points[_destPoint].position;
+        _destPoint = (_destPoint+1) % _points.Length;
     }
 }
