@@ -136,14 +136,16 @@ public class GunScript : XRGrabInteractable
                 CoinScript _coinScript = _hit.collider.transform.parent.GetComponent<CoinScript>();
                 _coinScript.Hasbeenhit(gameObject);
             }
-            else if(_hit.collider.gameObject.transform.parent.tag == "Enemy")
-            {
-                _hit.collider.gameObject.GetComponent<EnemyScript>().DoDamage(timeleft,_hit.point);
-            }
-        }
             
+        }
 
-        
+        if (_hit.collider.gameObject.tag == "Enemy")
+        {
+            _hit.collider.gameObject.GetComponent<NavmeshAI>().TakeDamage();
+        }
+
+
+
 
     }
 

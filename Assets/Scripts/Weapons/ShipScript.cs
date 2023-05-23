@@ -8,6 +8,8 @@ public class ShipScript : MonoBehaviour
     [SerializeField] private Animator _gunAnim;
     [SerializeField] private AlienBoss _alienBoss;
 
+    public int _shipHealth = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,13 @@ public class ShipScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void TakeDamage()
+    {
+        _shipHealth--;
+
         
     }
 

@@ -7,12 +7,21 @@ public class AlienBoss : MonoBehaviour
     [SerializeField] private AudioClip[] _hurtLines;
     [SerializeField] private AudioClip[] _punchingLines;
     [SerializeField] private AudioClip[] _voiceLines;
+    [SerializeField] private AudioClip _lossVoiceLine;
+    [SerializeField] private ShipScript _shipScript;
+    [SerializeField] private Animator _shipAnim;
 
+    [Header("SKIP THE CUTSCENE FOR GODS SAKE")]
+    [SerializeField] private bool _SkipCutscene;
+
+    [Header("Misc")]
+    private SceneHandler _sceneHandler;
     public AudioSource _voice;
     public AudioSource _bossMusicPlayer;
     public AudioClip _claireDeLune;
 
     public bool _canBeHit = false;
+    bool _canPunch = true;
 
     [SerializeField] private Animator _anim;
     [SerializeField] private Animator _gunsAnim;
@@ -27,6 +36,7 @@ public class AlienBoss : MonoBehaviour
     void Start()
     {
         StartCoroutine(Sequencer());
+        _sceneHandler = GameObject.Find("GameManager").GetComponent<SceneHandler>();
     }
 
     // Update is called once per frame
@@ -45,7 +55,7 @@ public class AlienBoss : MonoBehaviour
 
     public void DoPunch()
     {
-        _voice.PlayOneShot(_hurtLines[_randomPicker]);
+        _voice.PlayOneShot(_punchingLines[_randomPicker]);
 
         int punchdirection = Random.Range(0,2);
 
@@ -65,6 +75,8 @@ public class AlienBoss : MonoBehaviour
 
         }
 
+        
+
        
     }
 
@@ -80,23 +92,78 @@ public class AlienBoss : MonoBehaviour
         _voice.PlayOneShot(_hurtLines[_randomPicker]);
         _randomPicker++;
 
+        if(_randomPicker > 6)
+        {
+            _randomPicker = 0;
+        }
+
         if (_alienHealth == 0)
         {
+            _canPunch = false;
             _anim.SetBool("IsDead", true);
             _gunsAnim.SetBool("DeployGuns", false);
             _bossMusicPlayer.Stop();
-            _voice.PlayOneShot(_voiceLines[1]);
+
+            StartCoroutine(Die());
+            
         }
     }
 
     IEnumerator Sequencer()
     {
-        yield return new WaitForSeconds(3);
-        _voice.PlayOneShot(_claireDeLune);
-        yield return new WaitForSeconds(0.5f);
-        _voice.PlayOneShot(_voiceLines[0]);
-        yield return new WaitForSeconds(132);
+        if(_SkipCutscene == false)
+        {
+            yield return new WaitForSeconds(3);
+            _voice.PlayOneShot(_claireDeLune);
+            yield return new WaitForSeconds(0.5f);
+            _voice.PlayOneShot(_voiceLines[0]);
+            yield return new WaitForSeconds(122);
+            _voice.PlayOneShot(_voiceLines[2]);
+            yield return new WaitForSeconds(10);
+        }
+        
         _gunsAnim.SetBool("DeployGuns",true);
         _bossMusicPlayer.Play();
+
+        for(int i = 0; i < 15; i++)
+        {
+            if (_canPunch)
+            {
+                yield return new WaitForSeconds(3.5f);
+                _canBeHit = true;
+                yield return new WaitForSeconds(0.5f);
+                DoPunch();
+                yield return new WaitForSeconds(2);
+
+                AnimatorClipInfo[] _shipAnimInfo;
+                _shipAnimInfo = _shipAnim.GetCurrentAnimatorClipInfo(0);
+
+                if (_shipAnimInfo[0].clip.name == "SpaceIdle")
+                {
+                    _shipScript.TakeDamage();
+                }
+
+                if (_shipScript._shipHealth <= 0)
+                {
+                    _gunsAnim.SetBool("DeployGuns", false);
+                    _voice.PlayOneShot(_lossVoiceLine);
+                    _sceneHandler.ChangeScene("TheEnd", 3);
+
+                }
+                yield return new WaitForSeconds(1);
+                _canBeHit = false;
+            }
+        }
+        
     }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(4);
+        _voice.PlayOneShot(_voiceLines[1]);
+        yield return new WaitForSeconds(30);
+        _sceneHandler.ChangeScene("Credits");
+    }
+
+    
 }

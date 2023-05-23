@@ -8,6 +8,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/TheCity.unity
+    guid: ff505dde4ff2af4479bdefbd45236660
+  - enabled: 1
+    path: Assets/Scenes/AboveCity.unity
+    guid: abb016628f7a21249a1f624c663ee810
+  - enabled: 1
+    path: Assets/Scenes/AfterCrash.unity
+    guid: f44207b252d56ec40b3a0a5642e82359
+  - enabled: 1
+    path: Assets/Scenes/UFO.unity
+    guid: e5f0aec19ffd3ad4ca7c148ef18f816a
+  - enabled: 1
+    path: Assets/Scenes/TheEnd.unity
+    guid: 8184650a2ed1ca14fa8680e3022237ef
+  - enabled: 1
+    path: Assets/Scenes/TheFactory.unity
+    guid: 326818bd04c95014d8524178ca755c36
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5d4fa4ee32d30d54fb6771094c0df237,
       type: 2}
