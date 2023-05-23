@@ -43,7 +43,7 @@ public class NavmeshAI : MonoBehaviour
         else
         {
             float _playerdistance = Vector3.Distance(_playerTransform.position, transform.position);
-            print(_playerdistance);
+
 
             if (_playerdistance <1f && _nav.velocity.magnitude < 0.1f)
             {
