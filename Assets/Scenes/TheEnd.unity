@@ -1740,7 +1740,7 @@ MonoBehaviour:
   _lossVoiceLine: {fileID: 8300000, guid: 644b30b33c2ad3b4a9e0d67923a9b2a2, type: 3}
   _shipScript: {fileID: 919132148427792876}
   _shipAnim: {fileID: 8632055957588576861}
-  _SkipCutscene: 1
+  _SkipCutscene: 0
   _voice: {fileID: 867033902843787341}
   _bossMusicPlayer: {fileID: 867033902843787343}
   _claireDeLune: {fileID: 8300000, guid: 25659fd3b63900d438eb9b924362bdfc, type: 3}
