@@ -20,6 +20,7 @@ public class FreezePlayer : MonoBehaviour
     IEnumerator DelayFreeze(float _delayTime,Collider other)
     {
         yield return new WaitForSeconds(_delayTime);
-        other.gameObject.transform.parent.gameObject.GetComponent<LocomotionSystem>().enabled = false;
+        print(other.gameObject.transform.parent.parent.gameObject.name);
+        other.gameObject.transform.parent.parent.gameObject.GetComponent<LocomotionSystem>().enabled = false;
     }
 }

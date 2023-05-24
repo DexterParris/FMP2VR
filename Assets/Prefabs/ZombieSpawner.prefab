@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3028013056704028692}
   - component: {fileID: 3028013056704028779}
   - component: {fileID: 3028013056704028778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ZombieSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3028013056704028694
 MeshFilter:

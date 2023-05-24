@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/TheFactory.unity
+    guid: 326818bd04c95014d8524178ca755c36
   - enabled: 1
     path: Assets/Scenes/TheCity.unity
     guid: ff505dde4ff2af4479bdefbd45236660
@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/UFO.unity
     guid: e5f0aec19ffd3ad4ca7c148ef18f816a
   - enabled: 1
+    path: Assets/Scenes/Mars.unity
+    guid: 9be3c157bc497cd43a73815f51c263e2
+  - enabled: 1
     path: Assets/Scenes/TheEnd.unity
     guid: 8184650a2ed1ca14fa8680e3022237ef
-  - enabled: 1
-    path: Assets/Scenes/TheFactory.unity
-    guid: 326818bd04c95014d8524178ca755c36
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 7689bb2581ce6d94592c620f0a4abc6e
