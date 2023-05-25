@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4572651852632224129}
   - component: {fileID: 4572651852632224128}
   - component: {fileID: 4572651852632224127}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnergyPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ Transform:
   - {fileID: 4572651853630400162}
   - {fileID: 4572651853440623308}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -89.985, z: 0}
 --- !u!54 &4572651852632224129
 Rigidbody:

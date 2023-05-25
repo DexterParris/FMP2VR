@@ -17,8 +17,8 @@ TagManager:
   - Sliceable
   - AlienCollision
   - AnimTriggers
-  - 
-  - 
+  - Gun
+  - IgnoreGun
   - 
   - 
   - 
